@@ -21,6 +21,10 @@ use yii\widgets\ActiveForm;
     ])->hint('Company is not listed? ' . Html::a('Create Company', ['/company/create'], ['target' => '_blank', 'class' => 'btn btn-default btn-xs']));
     ?>
 
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'vat')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'phone_no')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'fax_no')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'address1')->textInput(['maxlength' => true]) ?>

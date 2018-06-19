@@ -17,6 +17,10 @@ use Yii;
  * @property string $country
  * @property string $postalcode
  * @property string $created_on
+ * @property string $phone_no
+ * @property string $fax_no
+ * @property string $email
+ * @property string $vat
  *
  * @property Company $company
  */
@@ -38,7 +42,8 @@ class Address extends \yii\db\ActiveRecord
         return [
             [['id'], 'required'],
             [['id', 'company_id'], 'integer'],
-            [['name', 'address1', 'address2', 'city', 'state', 'country', 'postalcode', 'created_on'], 'string', 'max' => 255],
+            [['email'], 'email'],
+            [['phone_no', 'fax_no', 'vat', 'name', 'address1', 'address2', 'city', 'state', 'country', 'postalcode', 'created_on'], 'string', 'max' => 255],
             [['id'], 'unique'],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
         ];
