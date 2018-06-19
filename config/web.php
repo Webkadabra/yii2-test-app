@@ -57,6 +57,7 @@ $config = [
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
+            'enableConfirmation' => false, // for demo purposes
         ],
     ],
 ];
