@@ -41,7 +41,7 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             [['company_id'], 'integer'],
-            [['company_id', 'address1', 'phone_no'], 'required'],
+            [['company_id', 'phone_no'], 'required'],
             [['email'], 'email'],
             [['phone_no', 'fax_no', 'vat', 'name', 'address1', 'address2', 'city', 'state', 'country', 'postalcode', 'created_on'], 'string', 'max' => 255],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
@@ -55,7 +55,7 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'company_id' => 'Company ID',
+            'company_id' => 'Company',
             'name' => 'Contact Name',
             'address1' => 'Address1',
             'address2' => 'Address2',
@@ -82,4 +82,6 @@ class Address extends \yii\db\ActiveRecord
     {
         return new AddressQuery(get_called_class());
     }
+
+
 }
