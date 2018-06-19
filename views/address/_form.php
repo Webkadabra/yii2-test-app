@@ -14,7 +14,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id')->textInput() ?>
 
-    <?= $form->field($model, 'company_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Company::find()->all(), 'id', 'name')) ?>
+    <?= $form->field($model, 'company_id')->widget(\kartik\select2\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->all(), 'id', 'name'),
+        'options' => ['placeholder' => 'Select a company ...'],
+        'pluginOptions' => [
+            'allowClear' => false
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
