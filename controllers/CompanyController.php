@@ -5,7 +5,7 @@ namespace app\controllers;
 use dektrium\user\filters\AccessRule;
 use Yii;
 use app\models\Company;
-use yii\data\ActiveDataProvider;
+use app\models\CompanySearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -49,11 +49,11 @@ class CompanyController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Company::find(),
-        ]);
+        $searchModel = new CompanySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
