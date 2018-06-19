@@ -2,11 +2,9 @@
 
 namespace app\controllers;
 
-use dektrium\user\filters\AccessRule;
 use Yii;
 use app\models\Address;
-use yii\data\ActiveDataProvider;
-use yii\filters\AccessControl;
+use app\models\AddressSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -28,18 +26,6 @@ class AddressController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'ruleConfig' => [
-                    'class' => AccessRule::className(),
-                ],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
         ];
     }
 
@@ -49,11 +35,11 @@ class AddressController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Address::find(),
-        ]);
+        $searchModel = new AddressSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
