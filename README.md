@@ -6,6 +6,7 @@
 > `composer install` (or `php composer.phar install`)
 4. run commands:
 > `php yii migrate`
+
 > `php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations`
 
 Your app is ready!
