@@ -10,8 +10,14 @@
 
 Your app is ready!
 
+# Known issues
+
+* when creating an address, if we click "Create Company" button and create a new `Company` model record, dropdown with a list of available companies would not be automatically updated. Solution: update it with AJAX/JS when `Company` form popup is closed; 
 <hr />
 
+...
+
+# Yii Documentation Below:
 This project uses Yii 2 Basic Project Template for a skeleton [Yii 2](http://www.yiiframework.com/).
 
 The template contains the basic features including user login/logout and a contact page.
@@ -42,7 +48,7 @@ DIRECTORY STRUCTURE
 REQUIREMENTS
 ------------
 
-The minimum requirement by this project template that your Web server supports PHP 5.4.0.
+The minimum requirement by this project template that your Web server supports PHP 5.5.0.
 
 
 INSTALLATION
