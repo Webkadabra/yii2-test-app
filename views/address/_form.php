@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
         'pluginOptions' => [
             'allowClear' => false
         ],
-    ]);
+    ])->hint('Company is not listed? ' . Html::a('Create Company', ['/company/create'], ['target' => '_blank', 'class' => 'btn btn-default btn-xs']));
     ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
