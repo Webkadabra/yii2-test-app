@@ -47,7 +47,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Address Management', 'url' => ['/address/index'], 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'List Companies', 'url' => ['/company/index'], 'visible' => !Yii::$app->user->isGuest],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
