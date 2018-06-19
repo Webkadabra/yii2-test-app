@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
-
     <?= $form->field($model, 'company_id')->widget(\kartik\select2\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->all(), 'id', 'name'),
         'options' => ['placeholder' => 'Select a company ...'],
@@ -33,11 +31,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'state')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'country')->widget(\kartik\select2\Select2::classname(), [
+        'data' => array_combine(\app\helpers\Address::flatCountries(),\app\helpers\Address::flatCountries()),
+        'options' => ['placeholder' => 'Select a country ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'postalcode')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_on')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
