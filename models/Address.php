@@ -52,14 +52,13 @@ class Address extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'company_id' => 'Company ID',
-            'name' => 'Name',
+            'name' => 'Contact Name',
             'address1' => 'Address1',
             'address2' => 'Address2',
             'city' => 'City',
             'state' => 'State',
             'country' => 'Country',
-            'postalcode' => 'Postalcode',
-            'created_on' => 'Created On',
+            'postalcode' => 'Postal Code',
         ];
     }
 
