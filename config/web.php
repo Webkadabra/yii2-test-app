@@ -53,6 +53,11 @@ $config = [
         */
     ],
     'params' => $params,
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
