@@ -12,6 +12,7 @@ use app\models\Address;
  */
 class AddressSearch extends Address
 {
+    public $company;
     /**
      * {@inheritdoc}
      */
@@ -19,7 +20,7 @@ class AddressSearch extends Address
     {
         return [
             [['id', 'company_id'], 'integer'],
-            [['name', 'address1', 'address2', 'city', 'state', 'country', 'postalcode', 'created_on'], 'safe'],
+            [['company', 'name', 'address1', 'address2', 'city', 'state', 'country', 'postalcode', 'created_on'], 'safe'],
         ];
     }
 
@@ -42,13 +43,17 @@ class AddressSearch extends Address
     public function search($params)
     {
         $query = Address::find();
+        $query->joinWith(['company']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        $dataProvider->sort->attributes['country'] = [
+            'asc' => ['tbl_country.name' => SORT_ASC],
+            'desc' => ['tbl_country.name' => SORT_DESC],
+        ];
         $this->load($params);
 
         if (!$this->validate()) {
@@ -70,7 +75,10 @@ class AddressSearch extends Address
             ->andFilterWhere(['like', 'state', $this->state])
             ->andFilterWhere(['like', 'country', $this->country])
             ->andFilterWhere(['like', 'postalcode', $this->postalcode])
-            ->andFilterWhere(['like', 'created_on', $this->created_on]);
+            ->andFilterWhere(['like', 'created_on', $this->created_on])
+
+            ->andFilterWhere(['like', 'company.name', $this->company]);;
+
 
         return $dataProvider;
     }
